@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        template="resources/template2.xhtml">
+    <ui:param name="pageTitle" value="MzG"/>
+    <ui:define name="content">
+<div class="col-md-10 col-md-offset-1">
+    <div class="well">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">İlan Ver</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Yayında Olan İlanlar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Yayında Olmayan İlanlar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Bekelemede</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane" id="home" role="tabpanel">
+                <ui:include src="AdvertisementStatus.xhtml" />
+            </div>
+            <div class="tab-pane active" id="profile" role="tabpanel">
+
+
+            </div>
+            <div class="tab-pane" id="messages" role="tabpanel">...</div>
+            <div class="tab-pane" id="settings" role="tabpanel">
+                <div class="container">
+                <ui:include src="Unpublished.xhtml" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </ui:define>
+
+</ui:composition>
