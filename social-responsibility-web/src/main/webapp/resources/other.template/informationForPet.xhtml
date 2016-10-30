@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://java.sun.com/jstl/core"
+
+        xmlns:p="http://primefaces.org/ui">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Hayvanlar Hakkında Bilmedikleriniz</h3>
+        </div>
+        <div class="panel-body">
+
+            <c:forEach var="degisken_adi" begin="1" end="4">
+                <div class="col-md-3">
+                    <div class="card card-block">
+                        <img class="card-img-top img-fluid" src="../images/burun_izi.jpg" width="180"
+                             height="150"/>
+                        <div class="card-block">
+                            <h2 class="card-title"><strong>Burun İzi</strong></h2>
+                            <p class="card-text">İnsanların parmak izlerinden ayırt edilebilmesi gibi,
+                                köpekler de burun izlerinden ayırt edilebilir. Yani her köpeğin burun izi farklıdır.. </p>
+
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
+        </div>
+    </div>
+</ui:composition>

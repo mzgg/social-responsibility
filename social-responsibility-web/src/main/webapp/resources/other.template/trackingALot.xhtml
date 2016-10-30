@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://java.sun.com/jstl/core"
+        xmlns:p="http://primefaces.org/ui" >
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">En Çok İzlenen Hayvanlar</h3>
+        </div>
+        <div class="panel-body">
+
+            <c:forEach var="degisken_adi" begin="1" end="12">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="thumbnail">
+                        <img src="../images/kopek2.jpg" alt="it" class="img-thumbnail img-responsive"
+                             style="height: 100px; height: 100px;"/>
+                        <h6 class="h6 ">İtime Yuva Arıyorum</h6>
+                    </div>
+                </div>
+            </c:forEach>
+
+        </div>
+    </div>
+
+</ui:composition>

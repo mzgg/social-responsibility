@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        template="resources/template2.xhtml">
+    <ui:param name="pageTitle" value="Üye Ol"/>
+    <ui:define name="content">
+        <div class="col-md-5 col-md-offset-1" style="border:0px solid silver; padding-top: 15px;">
+            <div class="alert alert-success" role="alert" style="display: none;">
+                <h4 class="alert-heading"><strong>Tebrikler</strong>!</h4>
+                <p>Başarıyla Kayıt Oldunuz. Artık Sizde Hayvan Sahiplendirme Platformunun bir üyesisiniz.</p>
+                <p class="mb-0">Giriş Panelinden Giriş yapabilirsiniz.</p>
+            </div>
+            <p:fieldset legend="Üye Ol">
+                <h:form>
+                    <h:messages styleClass="alert alert-danger" style=" font-weight: bold;"/><br/>
+
+
+                    <div class="form-group">
+                        <label>Adınız :</label>
+                        <h:inputText id="name"
+                                     styleClass="form-control"
+                                     requiredMessage="Lütfen Adınızı Giriniz"
+                                     required="true"
+                                     a:placeholder="Adınızı Giriniz... "/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Soyadnız :</label>
+                        <h:inputText styleClass="form-control"
+                                     requiredMessage="Lütfen Soydınızı Giriniz"
+                                     required="true"
+                                     a:placeholder="Soyadınızı Giriniz... "/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefon :</label>
+                        <h:inputText styleClass="form-control" a:placeholder="Telefonunuzu Giriniz... "/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-Posta :</label>
+                        <h:inputText styleClass="form-control"
+                                     requiredMessage="E-Posta Adresinizi Giriniz"
+                                     required="true"
+                                     a:placeholder="E-Posta Adresinizi Giriniz... "/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Şifre :</label>
+                        <h:inputSecret styleClass="form-control"
+                                       requiredMessage="Lütfen Şifreinizi Giriniz"
+                                       required="true"
+                                       a:placeholder="Şifrenizi Giriniz... "/>
+                    </div>
+                    <h:commandButton value="Kayıt Ol" styleClass="btn btn-primary"/>
+                </h:form>
+            </p:fieldset>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

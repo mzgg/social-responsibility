@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Acil Duyurular</h3>
+        </div>
+        <div class="panel-body" style="padding: 0px;">
+
+            <div class="list-group">
+                <c:forEach var="degisken_adi" begin="1" end="4">
+                    <a href="#" class="list-group-item ">
+                        <h5 class="list-group-item-heading"><strong>List group item heading</strong></h5>
+                        <p class="list-group-item-text">Minik Kuşuma acil ev bakıcısı lazım.Ben tatile gideceğim
+                            ve kuşum evsiz kalmasın. Acil Yardım!!</p>
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>
