@@ -13,7 +13,6 @@
 - Java SE
 - Spring Core
 - Spring Security
-- Spring Data
 - Restful Web Service 
 - Log4J
 - Junit
@@ -21,7 +20,8 @@
 
 - Jpa
 - Hibernate
-
+- Spring Data
+- DBUnit
 <h5>Application Server</h5>
 
 - Tomcat 8
