@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        template="../resources/template2.xhtml">
+    <ui:param name="pageTitle" value="MzG"/>
+    <ui:define name="content">
+
+
+        <div class="well" style="padding: 10px; height: 600px;">
+            <h3 class="h3"><strong>Detaylı Üyelik Bilgileriniz</strong></h3>
+
+
+            <div class="col-md-4">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a data-toggle="tab" href="#home">Kişisel Bilgiler</a></li>
+                    <li><a data-toggle="tab" href="#menu1">İş Bilgileri</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Hayvan Biyografisi</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content panel panel-default panel-body">
+                    <div id="home" class="tab-pane fade in active">
+                        <h3>Kişsel Bilgiler</h3>
+                        <div class="alert alert-danger" style=" font-weight: bold;">
+                            <span class="sr-only">Error:</span>
+                            Hata Mesajları
+                        </div>
+
+                        <h:panelGrid columns="2"  cellspacing="20" cellpadding="10"
+                                     style="width: 500px; margin: 10px;">
+                            <h:outputLabel value="Adınız: "/>
+                            <h:inputText styleClass="form-control" a:placeholder="Soyadınızı Giriniz... "/>
+
+                            <h:outputLabel value="Soyadınız:  "/>
+                            <h:inputText styleClass="form-control" a:placeholder="Soyadınızı Giriniz... "/>
+
+                            <h:outputLabel value="E-Posta"/>
+                            <h:inputText styleClass="form-control"
+                                         a:placeholder="E-Posta Adresiniz Giriniz... "/>
+
+                            <h:outputLabel value="Telefon"/>
+                            <h:inputText styleClass="form-control" a:placeholder="Telefonunuzu Giriniz... "/>
+
+                            <h:outputLabel value="Doğum Tarihi"/>
+                            <h:inputText styleClass="form-control" a:placeholder="Tarih"/>
+
+                            <h:panelGroup />
+                            <p:commandButton value="Düzenle" />
+
+
+                        </h:panelGrid>
+
+
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <h3>Kişsel Bilgiler</h3>
+                        <div class="alert alert-danger" style=" font-weight: bold;">
+                            <span class="sr-only">Error:</span>
+                            Hata Mesajları
+                        </div>
+
+                        <h:panelGrid columns="2" columnClasses="form-group" cellpadding="10"
+                                     style="width: 500px; margin: 10px;">
+
+                            <h:outputLabel value="Mesliğiniz ?"/>
+                            <h:inputText styleClass="form-control" a:placeholder="Ne İş Yaptığınızı Giriniz... "/>
+
+                            <h:outputLabel value="Kaç Senedir Çalışıyor sunuz ?" />
+                            <h:inputText styleClass="form-control" a:placeholder="Ne İş Yaptığınızı Giriniz... "/>
+
+                            <h:outputLabel value="Evli Misiniz ?" />
+                            <p:selectOneRadio    >
+
+                                <f:selectItem itemValue="1"   itemLabel="Evet" />
+                                <f:selectItem itemValue="1" itemLabel="Hayır" />
+                            </p:selectOneRadio>
+
+                            <h:outputLabel value="Evde Kaç Kişi yaşıyor sunuz ?" />
+                            <h:inputText styleClass="form-control" a:placeholder="??" />
+
+                        </h:panelGrid>
+                        <p:commandButton value="Düzenle"/>
+
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+
+                        <h3>Hayvan Bakım Bilgileri</h3>
+                        <div class="alert alert-danger" style=" font-weight: bold;">
+                            <span class="sr-only">Error:</span>
+                            Hata Mesajları
+                        </div>
+
+                        <h:panelGrid columns="2" columnClasses="form-group" cellpadding="10"
+                                     style="width: 500px; margin: 10px;">
+
+                            <h:outputLabel value="Daha Önce Hayvan baktınız mı?"/>
+                            <p:selectOneRadio >
+                                <f:selectItem itemValue="1"   itemLabel="Evet" />
+                                <f:selectItem itemValue="1" itemLabel="Hayır" />
+                            </p:selectOneRadio>
+
+                            <h:outputLabel value="Baktıysanız ne Tür hayvanlar baktınız ?" />
+                            <h:inputText styleClass="form-control" a:placeholder="Baktınız hayvanların türlerini giriniz !"/>
+
+
+
+                        </h:panelGrid>
+                        <p:commandButton value="Düzenle"/>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
