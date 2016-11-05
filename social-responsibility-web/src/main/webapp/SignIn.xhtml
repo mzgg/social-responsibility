@@ -10,32 +10,46 @@
     <ui:param name="pageTitle" value="MzG"/>
     <ui:define name="content">
         <div class="col-md-5">
-            <div class="well" style="padding: 20px;">
+            <div class="well">
                 <h3 class="h3"><strong>Üye Girişi</strong></h3>
-                <div class="alert alert-danger" style=" font-weight: bold;">Kullanıcı adı veya Şifre hatalı</div>
 
-                <table border="0" width="320" class="formSize">
+                <h:outputText value="#{authorization.email}" />
 
-                    <tr>
-                        <td><h:outputLabel value="E-Posta"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:inputText styleClass="form-control" a:placeholder="E-Posta Adresiniz Giriniz... "/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel value="Şifre"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:inputSecret styleClass="form-control" a:placeholder="************* "/></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Şifremi Unuttum</a></td>
-                    </tr>
-                    <tr>
-                        <td align="right"><h:commandButton value="Giriş" styleClass="btn btn-primary"/></td>
-                    </tr>
-                </table>
+                <h:outputLabel>
+                    <div class="alert alert-danger" style=" font-weight: bold;">Kullanıcı adı veya Şifre hatalı</div>
+                </h:outputLabel>
+                <h:form prependId="false">
+                    <table border="0" width="320" class="formSize">
 
+                        <tr>
+                            <td><h:outputLabel value="E-Posta"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:inputText styleClass="form-control" id="j_username"
+                                             a:placeholder="E-Posta Adresiniz Giriniz... "
+                                             value="#{authorization.email}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Şifre"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:inputSecret id="j_password" styleClass="form-control"
+                                               a:placeholder="************* "/></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">Şifremi Unuttum</a></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><h:commandButton action="#{authorization.login()}" value="Giriş"
+                                                               styleClass="btn btn-primary"/></td>
+                        </tr>
+                    </table>
+                </h:form>
+
+
+                <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                               rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                               style="margin-left: 5px;color: red"/>
 
             </div>
         </div>
