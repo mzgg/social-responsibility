@@ -28,18 +28,23 @@ import org.springframework.security.core.userdetails.User;
 @ManagedBean
 @SessionScoped
 public class Authorization implements Serializable {
-    @Getter
+
     private String email;
-    public void setEmail(String email) {
-        this.email = authentication.getName();
+
+    public String getEmail() {
+        return email;
     }
 
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
 
     public void login() {
 
         System.out.println("Login Metoduna Girildi");
+
         try {
 
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -47,6 +52,11 @@ public class Authorization implements Serializable {
 
             dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
             FacesContext.getCurrentInstance().responseComplete();
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            setEmail(authentication.getName());
+            System.out.println(authentication.getName()+" bak bakalım");
 
         } catch (ServletException | IOException ex) {
 
@@ -58,14 +68,4 @@ public class Authorization implements Serializable {
         System.out.println("Login Metodundan Çıkıldı");
     }
 
-    public void authorizedUserControl() {
-
-
-        if (!authentication.getPrincipal().toString().equals("anonymousUser")) {
-
-            NavigationHandler nh = FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-            nh.handleNavigation(FacesContext.getCurrentInstance(), null, "/advertisementStatus.xhtml?faces-redirect=true");
-
-        }
-    }
 }
