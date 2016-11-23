@@ -9,7 +9,9 @@
         template="../resources/template2.xhtml">
     <ui:param name="pageTitle" value="MzG"/>
     <ui:define name="content">
+<h:head>
 
+</h:head>
 
         <div class="well" style="padding: 10px; height: 600px;">
             <h3 class="h3"><strong>Detaylı Üyelik Bilgileriniz</strong></h3>
@@ -27,35 +29,59 @@
                 <div class="tab-content panel panel-default panel-body">
                     <div id="home" class="tab-pane fade in active">
                         <h3>Kişsel Bilgiler</h3>
-                        <div class="alert alert-danger" style=" font-weight: bold;">
-                            <span class="sr-only">Error:</span>
-                            Hata Mesajları
-                        </div>
 
-                        <h:panelGrid columns="2"  cellspacing="20" cellpadding="10"
-                                     style="width: 500px; margin: 10px;">
-                            <h:outputLabel value="Adınız: "/>
-                            <h:inputText styleClass="form-control" a:placeholder="Soyadınızı Giriniz... "/>
+                        <h:form>
+                            <p:growl id="growl" showDetail="false" sticky="true" />
+                           <!-- <h:messages styleClass="alert alert-danger hMessage"
+                                        style=" font-weight: bold; padding-left: 30px;"/> -->
+                            <h:panelGrid columns="2" cellspacing="20" cellpadding="10"
+                                         style="width: 500px; margin: 10px;">
+                                <h:outputLabel value="Adınız: "/>
+                                <h:outputLabel value="#{memberUpdateProfile.member.memberName}"
+                                               rendered="#{not memberUpdateProfile.visibility}"/>
+                                <h:inputText styleClass="form-control"
+                                             value="#{memberUpdateProfile.member.memberName}"
+                                             required="true"
+                                             requiredMessage="Adınızı Silemezsiniz..."
+                                             rendered="#{memberUpdateProfile.visibility}"/>
 
-                            <h:outputLabel value="Soyadınız:  "/>
-                            <h:inputText styleClass="form-control" a:placeholder="Soyadınızı Giriniz... "/>
-
-                            <h:outputLabel value="E-Posta"/>
-                            <h:inputText styleClass="form-control"
-                                         a:placeholder="E-Posta Adresiniz Giriniz... "/>
-
-                            <h:outputLabel value="Telefon"/>
-                            <h:inputText styleClass="form-control" a:placeholder="Telefonunuzu Giriniz... "/>
-
-                            <h:outputLabel value="Doğum Tarihi"/>
-                            <h:inputText styleClass="form-control" a:placeholder="Tarih"/>
-
-                            <h:panelGroup />
-                            <p:commandButton value="Düzenle" />
+                                <h:outputLabel value="Soyadınız:  "/>
+                                <h:outputLabel value="#{memberUpdateProfile.member.memberSurname}"
+                                               rendered="#{not memberUpdateProfile.visibility}"/>
+                                <h:inputText styleClass="form-control"
+                                             value="#{memberUpdateProfile.member.memberSurname}"
+                                             required="true"
+                                             requiredMessage="Soydınızı Silemezsiniz..."
+                                             rendered="#{memberUpdateProfile.visibility}"/>
 
 
-                        </h:panelGrid>
+                                <h:outputLabel value="E-Posta"/>
+                                <h:outputLabel value="#{memberUpdateProfile.member.emailAddress}"
+                                />
 
+
+                                <h:outputLabel value="Telefon"/>
+                                <h:outputLabel value="#{memberUpdateProfile.member.phone}"
+                                               rendered="#{not memberUpdateProfile.visibility}"/>
+                                <h:inputText styleClass="form-control"
+                                             a:placeholder="Telefonunuzu Giriniz... "
+                                             value="#{memberUpdateProfile.member.phone}"
+                                             rendered="#{memberUpdateProfile.visibility}"/>
+
+
+
+                                <h:panelGroup/>
+                                <br/>
+                                <h:commandButton value="Düzenle" styleClass="btn btn-primary"
+                                                 action="#{memberUpdateProfile.changeAktive}"
+                                                 rendered="#{not memberUpdateProfile.visibility}"/>
+                                <p:commandButton  value="Kaydet" ajax="false" update="growl"
+                                                 action="#{memberUpdateProfile.updateSave}"
+                                                 rendered="#{memberUpdateProfile.visibility}"/>
+
+
+                            </h:panelGrid>
+                        </h:form>
 
                     </div>
                     <div id="menu1" class="tab-pane fade">
@@ -71,18 +97,18 @@
                             <h:outputLabel value="Mesliğiniz ?"/>
                             <h:inputText styleClass="form-control" a:placeholder="Ne İş Yaptığınızı Giriniz... "/>
 
-                            <h:outputLabel value="Kaç Senedir Çalışıyor sunuz ?" />
+                            <h:outputLabel value="Kaç Senedir Çalışıyor sunuz ?"/>
                             <h:inputText styleClass="form-control" a:placeholder="Ne İş Yaptığınızı Giriniz... "/>
 
-                            <h:outputLabel value="Evli Misiniz ?" />
-                            <p:selectOneRadio    >
+                            <h:outputLabel value="Evli Misiniz ?"/>
+                            <p:selectOneRadio>
 
-                                <f:selectItem itemValue="1"   itemLabel="Evet" />
-                                <f:selectItem itemValue="1" itemLabel="Hayır" />
+                                <f:selectItem itemValue="1" itemLabel="Evet"/>
+                                <f:selectItem itemValue="1" itemLabel="Hayır"/>
                             </p:selectOneRadio>
 
-                            <h:outputLabel value="Evde Kaç Kişi yaşıyor sunuz ?" />
-                            <h:inputText styleClass="form-control" a:placeholder="??" />
+                            <h:outputLabel value="Evde Kaç Kişi yaşıyor sunuz ?"/>
+                            <h:inputText styleClass="form-control" a:placeholder="??"/>
 
                         </h:panelGrid>
                         <p:commandButton value="Düzenle"/>
@@ -100,14 +126,14 @@
                                      style="width: 500px; margin: 10px;">
 
                             <h:outputLabel value="Daha Önce Hayvan baktınız mı?"/>
-                            <p:selectOneRadio >
-                                <f:selectItem itemValue="1"   itemLabel="Evet" />
-                                <f:selectItem itemValue="1" itemLabel="Hayır" />
+                            <p:selectOneRadio>
+                                <f:selectItem itemValue="1" itemLabel="Evet"/>
+                                <f:selectItem itemValue="1" itemLabel="Hayır"/>
                             </p:selectOneRadio>
 
-                            <h:outputLabel value="Baktıysanız ne Tür hayvanlar baktınız ?" />
-                            <h:inputText styleClass="form-control" a:placeholder="Baktınız hayvanların türlerini giriniz !"/>
-
+                            <h:outputLabel value="Baktıysanız ne Tür hayvanlar baktınız ?"/>
+                            <h:inputText styleClass="form-control"
+                                         a:placeholder="Baktınız hayvanların türlerini giriniz !"/>
 
 
                         </h:panelGrid>
@@ -118,8 +144,6 @@
 
                 </div>
             </div>
-
-
 
 
         </div>

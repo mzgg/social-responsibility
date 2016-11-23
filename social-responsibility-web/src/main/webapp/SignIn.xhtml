@@ -13,11 +13,10 @@
             <div class="well">
                 <h3 class="h3"><strong>Üye Girişi</strong></h3>
 
-                <h:outputText value="#{authorization.email}" />
+                <h:outputText value="#{authorization.email}"/>
 
-                <h:outputLabel>
-                    <div class="alert alert-danger" style=" font-weight: bold;">Kullanıcı adı veya Şifre hatalı</div>
-                </h:outputLabel>
+                <h:messages styleClass="alert alert-danger" style=" font-weight: bold; padding-left: 30px;"/><br/>
+
                 <h:form prependId="false">
                     <table border="0" width="320" class="formSize">
 
@@ -27,21 +26,28 @@
                         <tr>
                             <td><h:inputText styleClass="form-control" id="j_username"
                                              a:placeholder="E-Posta Adresiniz Giriniz... "
-                                             value="#{authorization.email}"/></td>
+                                             value="#{loginBean.userName}"/></td>
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Şifre"/></td>
                         </tr>
                         <tr>
                             <td><h:inputSecret id="j_password" styleClass="form-control"
-                                               a:placeholder="************* "/></td>
+                                               a:placeholder="************* "
+                                               value="#{loginBean.password}"/></td>
                         </tr>
+
                         <tr>
                             <td><a href="#">Şifremi Unuttum</a></td>
                         </tr>
                         <tr>
-                            <td align="right"><h:commandButton action="#{authorization.login()}" value="Giriş"
-                                                               styleClass="btn btn-primary"/></td>
+                            <td align="right"><h:commandButton action="#{loginBean.userValidate}"
+                                                               value="Giriş"
+                                                               styleClass="btn btn-primary">
+
+
+
+                            </h:commandButton></td>
                         </tr>
                     </table>
                 </h:form>

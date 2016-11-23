@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.ws.rs.*;
 import java.util.List;
 
 /**
@@ -39,14 +38,49 @@ public class MemberDAOImpl implements MemberDAO {
     @Override
     @Transactional
     public Member findUser(String email, String password) {
-        Query query = entityManager.createQuery("SELECT M FROM MEMBER M WHERE M.emailAddress=:emailQuery  AND M.password=:passwordQuery", Member.class);
+        try {
+            TypedQuery<Member> query = entityManager.createQuery("SELECT M FROM MEMBER M WHERE M.emailAddress=:emailQuery  AND M.password=:passwordQuery", Member.class);
+            query.setParameter("emailQuery", email);
+            query.setParameter("passwordQuery", password);
 
-        query.setParameter("emailQuery", email);
-        query.setParameter("passwordQuery", password);
+            return query.getSingleResult();
 
-        Member members = (Member) query.getSingleResult();
-        return members;
+        } catch (Exception e) {
+            return null;
+
+        }
+
     }
+
+    @Override
+    @Transactional
+    public Member findUser(String email) {
+        try {
+            TypedQuery<Member> query = entityManager.createQuery("SELECT M FROM MEMBER M WHERE M.emailAddress=:emailQuery", Member.class);
+            query.setParameter("emailQuery", email);
+
+            return query.getSingleResult();
+
+        } catch (Exception e) {
+            return null;
+
+        }
+
+    }
+
+    @Override
+    @Transactional
+    public Member findUser(int userId) {
+        Member member = entityManager.find(Member.class, userId);
+        return member;
+    }
+
+    @Override
+    @Transactional
+    public void updateMember(Member member) {
+        entityManager.merge(member);
+    }
+
 
     public EntityManager getEntityManager() {
         return entityManager;

@@ -18,4 +18,11 @@ public interface MemberDAO {
     List<Member> select();
 
     Member findUser(String email, String password);
+
+    Member findUser(String email);
+
+    Member findUser(int userId);
+
+    void updateMember(Member member);
+
 }

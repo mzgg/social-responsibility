@@ -49,3 +49,8 @@
 .detailColumnSpace{
     height: 50px;
 }
+
+.hMessage{
+    font-weight: bold;
+    padding-left: 30px;
+}

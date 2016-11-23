@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label>Şifre :</label>
                         <h:inputSecret styleClass="form-control"
-                                       requiredMessage="Lütfen Şifreinizi Giriniz"
+                                       requiredMessage="Lütfen Şifreninizi Giriniz"
                                        required="true"
                                        a:placeholder="Şifrenizi Giriniz... "
                                        value="#{memberRegistrationBean.member.password}"/>
@@ -76,13 +76,16 @@
                     <div class="form-group">
                         <label>Şifre Tekrar :</label>
                         <h:inputSecret styleClass="form-control"
-                                       requiredMessage="Lütfen Şifreinizi Giriniz"
+                                       requiredMessage="Lütfen Şifreninizi tekrar Giriniz"
                                        required="true"
-                                       a:placeholder="Şifrenizi Giriniz... "/>
+                                       a:placeholder="Şifrenizi Giriniz... "
+                                       value="#{memberRegistrationBean.confirmPassword}"/>
 
 
                     </div>
-                    <h:commandButton value="Kayıt Ol" action="#{memberRegistrationBean.save(memberRegistrationBean.member)}" styleClass="btn btn-primary"/>
+                    <h:commandButton value="Kayıt Ol"
+                                     action="#{memberRegistrationBean.userRegistrationValidate()}"
+                                     styleClass="btn btn-primary"/>
                 </div>
 
 

@@ -7,9 +7,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 
 import java.io.Serializable;
@@ -21,10 +26,13 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 public class MemberRegistrationBean implements Serializable {
-
     @Getter
     @Setter
     private Member member = new Member();
+
+    @Getter
+    @Setter
+    private String confirmPassword;
 
     @Getter
     @Setter
@@ -35,21 +43,23 @@ public class MemberRegistrationBean implements Serializable {
     MemberDAO memberDAO = context.getBean(MemberDAOImpl.class);
 
 
-    public void save(Member member) {
-        member.setRole(1);
-        memberDAO.insertMember(member);
-        visibility = false;
+    public void userRegistrationValidate() {
+        Member user = memberDAO.findUser(member.getEmailAddress());
+        FacesContext context = FacesContext.getCurrentInstance();
+        System.out.println(member);
+        if (!confirmPassword.equals(member.getPassword())) {
+            context.addMessage(null, new FacesMessage("Şifreler Uyuşmuyor"));
+
+        } else if (user == null) {
+            member.setRole(1);
+            member.setEnabled(1);
+            memberDAO.insertMember(member);
+            visibility = false;
+        } else {
+            context.addMessage(null, new FacesMessage("Bu E-Posta adresi kullanılmaktadır."));
+        }
+
     }
 
-    public List<Member> Select() {
-        return memberDAO.select();
-    }
-
-
-    public Member findUser(String email, String password) {
-
-        return memberDAO.findUser(email, password);
-
-    }
 
 }
