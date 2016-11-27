@@ -2,7 +2,7 @@ package com.mehmetzahit.service;
 
 import com.mehmetzahit.model.Member;
 import com.mehmetzahit.persistence.dao.MemberDAO;
-import com.mehmetzahit.persistence.dao.MemberDAOImpl;
+import com.mehmetzahit.persistence.jpa.MemberDAOImpl;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

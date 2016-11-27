@@ -2,14 +2,13 @@ package com.mehmetzahit.bean;
 
 import com.mehmetzahit.model.Member;
 import com.mehmetzahit.persistence.dao.MemberDAO;
-import com.mehmetzahit.persistence.dao.MemberDAOImpl;
+import com.mehmetzahit.persistence.jpa.MemberDAOImpl;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;

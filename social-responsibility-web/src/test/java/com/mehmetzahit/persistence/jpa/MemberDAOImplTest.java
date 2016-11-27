@@ -1,12 +1,11 @@
-package com.mehmetzahit.persistence.dao;
+package com.mehmetzahit.persistence.jpa;
 
 import com.mehmetzahit.model.Member;
-import junit.framework.TestCase;
+import com.mehmetzahit.persistence.dao.MemberDAO;
+import com.mehmetzahit.persistence.jpa.MemberDAOImpl;
 import org.junit.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
 
 /**
  * Created by GUNEY on 1.11.2016.
