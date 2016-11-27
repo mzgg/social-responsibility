@@ -14,14 +14,45 @@
 
 <h:body>
     <h:form>
-        <p:multiSelectListbox value="#{multiSelectView.selection}" effect="slide" header="Categories" showHeaders="true">
-            <f:selectItems value="#{multiSelectView.categories}"/>
-        </p:multiSelectListbox>
 
-        <p:commandButton value="İlan Ver" action="AdvertisementPuplish.xhtml?faces-redirect=true"  icon="ui-icon-check"   style="display:block;margin:10px 0"/>
+            <h:panelGrid columns="7" cellpadding="6">
+                <p:outputLabel value="Hayvan Türü: ">
+                    <p:selectOneListbox id="country" value="#{dropdownView.country}" style="width:150px">
+                        <p:ajax listener="#{dropdownView.onCountryChange}" update="city"/>
+                        <f:ajax event="click" render="@all"/>
+                        <f:selectItems var="item"
+                                       itemLabel="#{item.value}"
+                                       itemValue="#{item.key}"
+                                       value="#{dropdownView.countries.entrySet()}"/>
+                    </p:selectOneListbox>
+                </p:outputLabel>
+
+                <p:outputLabel value="Hayvan Irkı: " rendered="#{dropdownView.visibility}">
+                    <p:selectOneListbox id="city" value="#{dropdownView.city}" style="width:230px">
+                        <f:ajax event="click" render="@all"/>
+                        <f:selectItems var="item"
+                                       itemLabel="#{item.value}"
+                                       itemValue="#{item.key}"
+                                       value="#{dropdownView.cities.entrySet()}"/>
+                    </p:selectOneListbox>
+                </p:outputLabel>
+
+                <p:outputLabel value="Eğitim:" rendered="#{dropdownView.visibilityForTrainingBox}">
+                    <p:selectOneListbox value="#{dropdownView.training}">
+                        <f:ajax event="click" render="@all"/>
+                        <f:selectItem itemLabel="Eğitimli" itemValue="1"/>
+                        <f:selectItem itemLabel="Eğitimsiz" itemValue="0"/>
+                    </p:selectOneListbox>
+                </p:outputLabel>
+
+                <p:commandButton value="Submit" icon="ui-icon-check" rendered="#{dropdownView.visibilityForButton}"/>
+            </h:panelGrid>
+
+            <p:separator/>
+
+
 
     </h:form>
-
 </h:body>
 
 

@@ -1,39 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:p="http://primefaces.org/ui"
-        template="../resources/template2.xhtml">
-    <ui:param name="pageTitle" value="MzG"/>
-    <ui:define name="content">
-        <h:form>
-
-            <div class="well col-lg-5">
-                <h2 class="h2">İlan Yayınla</h2>
-                <ol class="breadcrumb">
-                    <li><a href="#">Kedi</a></li>
-                    <li><a href="#">Van Kedisi</a></li>
-                    <li class="active">Eğitimsiz</li>
-                </ol>
-                <div class="form-group ">
-                    <label>İlan Başlığı</label>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
 
 
-                    <h:inputText styleClass="form-control" required="true" requiredMessage="İlan Başlığı Giriniz"/>
-                    <label>Resim Seçiniz</label>
-                    <p:fileUpload label="Seçiniz"
-                                  fileUploadListener="#{fileUploadView.handleFileUpload}"
-                                  mode="" dragDropSupport="false"
-                                  multiple="true" sizeLimit="100000" fileLimit="3"
-                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                    <label>Açıklama</label><br />
-                    <p:inputTextarea cols="40" rows="10"></p:inputTextarea>
-                    <h:commandButton styleClass="btn btn-primary" value="Yayınla" />
+</h:head>
+<h:body>
+    <ui:composition template="../resources/template2.xhtml">
+        <ui:param name="pageTitle" value="MzG"/>
+        <ui:define name="content">
+            <h:form>
+
+                <h:outputText value="#{param.petKind}"/>
+                <h:outputText value="#{param.petRace}"/>
+                <h:outputText value="#{param.training}"/>
+
+                <div class="well col-lg-5">
+                    <h2 class="h2">İlan Yayınla</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Kedi</a></li>
+                        <li><a href="#">Van Kedisi</a></li>
+                        <li class="active">Eğitimsiz</li>
+                    </ol>
+                    <div class="form-group ">
+                        <label>İlan Başlığı</label>
+                        <h:inputText styleClass="form-control"
+                                     value="#{advertisementBean.advertisement.advertisementTopic}"
+                                     required="true"
+                                     requiredMessage="İlan Başlığı Giriniz"/>
+
+                        <label>Yaşı</label>
+                        <h:inputText styleClass="form-control"
+                                     value="#{advertisementBean.advertisement.age}"
+                                     style="width: 60px;" maxlength="2"/>
+
+                        <label>Cinsiyeti</label>
+                        <h:selectOneMenu styleClass="form-control" value="#{advertisementBean.advertisement.gender}"
+                                         style="width: 150px;">
+                            <f:selectItem itemValue="--Seçiniz--"/>
+                            <f:selectItem itemLabel="Dişi" itemValue="0"/>
+                            <f:selectItem itemLabel="Erkek" itemValue="1"/>
+                        </h:selectOneMenu>
+
+                        <label>İl</label>
+                        <h:panelGrid columns="2" style="margin-right: 10px;">
+                            <h:selectOneMenu styleClass="form-control" id="city"
+                                             value="#{cityAndDistrictDropdownBean.city}" style="width:150px">
+                                <p:ajax listener="#{cityAndDistrictDropdownBean.onCityChange}" update="district"/>
+                                <f:selectItem itemLabel="İl Seçiniz" itemValue="" noSelectionOption="true"/>
+                                <f:selectItems value="#{cityAndDistrictDropdownBean.cities.entrySet()}"
+                                               var="item"
+                                               itemLabel="#{item.value}"
+                                               itemValue="#{item.key}"/>
+                            </h:selectOneMenu>
+
+
+                            <h:selectOneMenu styleClass="form-control" id="district"
+                                             value="#{cityAndDistrictDropdownBean.district}" style="width:150px">
+                                <f:selectItem itemLabel="İlçe Seçiniz" itemValue="" noSelectionOption="true"/>
+                                <f:selectItems value="#{cityAndDistrictDropdownBean.districts.entrySet()}"
+                                               var="item"
+                                               itemLabel="#{item.value}"
+                                               itemValue="#{item.key}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+
+
+                        <p:fileUpload fileUploadListener="#{advertisementBean.fileUploadView.handleFileUpload}" mode="advanced"
+                                      label="Seçiniz"
+                                      dragDropSupport="true" auto="true"
+                                      fileLimitMessage="Limit Sınıra Ulaştı Daha Ekleyemezsiniz"
+                                      invalidFileMessage="Sadece JPG,PNG ve GIF "
+                                      multiple="true" update="messages" sizeLimit="1000000000" fileLimit="3"
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+
+
+                        <p:growl id="messages" showDetail="true"/>
+
+                        <label>Açıklama</label><br/>
+                        <p:inputTextarea cols="40" rows="5"></p:inputTextarea>
+                        <h:commandButton styleClass="btn btn-primary" value="Yayınla"
+                                         action="#{advertisementBean.persist}">
+                            <f:setPropertyActionListener value="#{cityAndDistrictDropdownBean.city}"
+                                                         target="#{advertisementBean.city}"/>
+
+                            <f:setPropertyActionListener value="#{cityAndDistrictDropdownBean.district}"
+                                                         target="#{advertisementBean.district}"/>
+
+                            <f:param name="petKind" value="#{param.petKind}" />
+                            <f:param name="petRace" value="#{param.petRace}" />
+                            <f:param name="training" value="#{param.training}" />
+
+                        </h:commandButton>
+                    </div>
                 </div>
-            </div>
-        </h:form>
-    </ui:define>
+            </h:form>
+        </ui:define>
 
-</ui:composition>
+    </ui:composition>
+</h:body>
+
+</html>

@@ -23,14 +23,17 @@
 
                     <h:inputText styleClass="form-control" required="true" requiredMessage="İlan Başlığı Giriniz"/>
                     <label>Resim Seçiniz</label>
-                    <p:fileUpload label="Seçiniz"
-                                  fileUploadListener="#{fileUploadView.handleFileUpload}"
-                                  mode="" dragDropSupport="false"
-                                  multiple="true" sizeLimit="100000" fileLimit="3"
+                    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced"
+                                  label="Seçiniz"
+                                  dragDropSupport="true" auto="true"
+                                  fileLimitMessage="Limit Sınıra Ulaştı Daha Ekleyemezsiniz"
+                                  invalidFileMessage="Sadece JPG,PNG ve GIF "
+                                  multiple="true" update="messages" sizeLimit="1000000000" fileLimit="3"
                                   allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                    <label>Açıklama</label><br />
+
+                    <label>Açıklama</label><br/>
                     <p:inputTextarea cols="40" rows="10"></p:inputTextarea>
-                    <h:commandButton styleClass="btn btn-primary" value="Yayınla" />
+                    <h:commandButton styleClass="btn btn-primary" value="Yayınla"/>
                 </div>
             </div>
         </h:form>
