@@ -30,3 +30,21 @@ Pet Adoption Platform
   <h5>Database Systems</h5>
   
   -Oracle
+
+
+CREATE TABLE member_role
+(
+    ROLE_ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    ROLE VARCHAR(45)
+);
+
+INSERT INTO zahit.member_role (ROLE) VALUES ('ROLE_GUEST');
+
+
+CREATE TABLE persistent_logins
+(
+    username VARCHAR(64) NOT NULL,
+    series VARCHAR(64) PRIMARY KEY NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    last_used TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
