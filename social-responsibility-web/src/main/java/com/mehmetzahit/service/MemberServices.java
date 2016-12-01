@@ -44,14 +44,20 @@ public class MemberServices implements MemberDAO {
         return memberDAO.findUser(email);
     }
 
-    @Override
-    public Member findUser(int userId) {
-        return null;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/findUserId/{findUserId}")
+    public Member findUser(@QueryParam("findUserId") long userId) {
+        return memberDAO.findUser(userId);
+
     }
 
-    @Override
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/update")
     public void updateMember(Member member) {
-
+        memberDAO.updateMember(member);
     }
     //http://localhost:8080/application/memberService/find?email=mzg
 
