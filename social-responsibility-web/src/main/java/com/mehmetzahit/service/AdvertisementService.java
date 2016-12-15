@@ -34,4 +34,12 @@ public class AdvertisementService implements AdvertisementDAO {
     public List<Advertisement> advertisements(@PathParam("memberId") long memberId) {
         return advertisementDAO.advertisements(memberId);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("searchAdvertisement/{searchAdvertisement}")
+    @Override
+    public Advertisement advertisement(@PathParam("searchAdvertisement") long advertisementNumber) {
+        return advertisementDAO.advertisement(advertisementNumber);
+    }
 }
