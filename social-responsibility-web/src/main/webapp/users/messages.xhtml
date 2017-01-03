@@ -1,240 +1,151 @@
 <!DOCTYPE html>
-<ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:p="http://primefaces.org/ui"
-        template="../resources/template2.xhtml">
-    <ui:param name="pageTitle" value="MzG"/>
-    <ui:define name="content">
-        <div class="col-lg-9">
-            <h2 class="h2">Mesajlar</h2><br/>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
 
-            <div class=" well well-sm " style="width: 650px; ">
 
-                <table border="0" width="600" class="table-bordered" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                    src="../resources/images/kopek.jpg"/></td>
-                        <td><strong><a href="#"> Köpeğime Acil Yuva Arıyorum !!</a></strong></td>
+</h:head>
+<h:body>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                                <li><a href="#">Rize</a></li>
-                                <li><a href="#">Merkez</a></li>
-                                <li class="active">Balsu Mah.</li>
-                            </ol>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <ui:composition template="../resources/template2.xhtml">
+        <ui:param name="pageTitle" value="MzG"/>
+        <ui:define name="content">
+            <h:form id="test">
+                <div class="col-lg-9">
+                    <h2 class="h2">Mesajlar</h2><br/>
+                    <div class=" well well-sm " style="width: 650px; ">
 
-            <div class="well  well-sm" style="width: 650px;">
-                <fieldset>
-                    <legend>Süleyman Telli</legend>
-                    <div class="scroll">
-                        <table border="0" width="600">
+                        <table border="0" width="600" class="table-bordered" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td align="left" colspan="2">
-                                    <div class="panel panel-default" style="width: 350px;">
-                                        <div class="panel-body" style="width: 350px; padding: 5px;">
-                                            <h6 class="h6"><strong>Süleyman Telli</strong></h6>
-                                            <small>
-                                                Merhaba İyi Günler. Çok
-                                                Hoş bir köpek. Bir Hastalığı sıkıntısı var mı
-                                                Almak istiyorum . Teşekkürler
-                                            </small>
-                                            <br/>
-                                            <span class="pull-right text-muted"><small><strong>14:55 28 Eylül</strong></small></span><br/>
+                                <td rowspan="2" width="60" height="50"><img width="60" height="60"
+                                                                            src="../resources/upload/#{messagePageBean.advertisement.advertisementImageList.get(0).advertisementImageName}"/>
+                                </td>
+                                <td><strong><a href="#">#{messagePageBean.advertisement.advertisementTopic}</a></strong>
+                                </td>
 
-                                        </div>
-                                    </div>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
+                                        <li><a href="#">#{messagePageBean.advertisement.city.cityName}</a></li>
+                                        <li class="active"><a
+                                                href="#">#{messagePageBean.advertisement.district.districtName}</a></li>
 
+                                    </ol>
                                 </td>
                             </tr>
-
-
-                            <tr>
-                                <td align="right" colspan="2">
-                                    <div class="panel panel-default  " style="width: 350px; ">
-                                        <div class="panel-body bg-warning"
-                                             style="width: 350px; text-align: left; padding: 5px;">
-                                            <h6 class="h6"><strong>Mehmet Zahit Güney</strong></h6>
-                                            <small>
-                                                Hayır yok. Nasıl amka
-                                                isiyorsanız alabilirsiniz.fdgdf gdfg fdgdfgdfg.sdf sd
-                                            </small>
-                                            <br/>
-                                            <span class="pull-right text-muted"><small><strong>15:15 28 Eylül</strong></small></span><br/>
-
-                                        </div>
-                                    </div>
-
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td align="left" colspan="2">
-                                    <div class="panel panel-default" style="width: 350px;">
-                                        <div class="panel-body" style="width: 350px; padding: 5px;">
-                                            <h6 class="h6"><strong>Süleyman Telli</strong></h6>
-                                            <small>
-                                                Tamam ozaman. Bana Kaynanı kargolayabilir miniz.
-                                                Koyun kutuyo verin yurt içi kargoya gelsin
-                                            </small>
-                                            <br/>
-
-                                            <span class="pull-right text-muted"><small><strong>16:25 28 Eylül</strong></small></span><br/>
-
-
-                                        </div>
-                                    </div>
-
-                                </td>
-                            </tr>
-
-
                         </table>
                     </div>
-                </fieldset>
 
-            </div>
-            <div class="well well-sm" style="width: 650px;">
-                <table border="0" width="610">
-                    <tr>
-                        <th valign="top">Mesajınız</th>
-                        <td align="right"><p:inputTextarea cols="64" rows="2"/></td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" align="right"><h:commandButton value="Gönder"
-                                                                       styleClass="btn btn-primary btn-sm"/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="col-lg-3 bg-success well well-sm messageListScroll" style="margin-top: 80px;">
-            <h4 class="h4 ">Mesaj Listesi</h4>
-
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td><strong>Köpeğime Acil Yuva Arıyorum !!</strong></td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-            <hr/>
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" >
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td>Köpeğime Acil Yuva Arıyorum !!</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-
-            <hr/>
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" >
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td>Köpeğime Acil Yuva Arıyorum !!</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-
-            <hr/>
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" >
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td>Köpeğime Acil Yuva Arıyorum !!</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-
-            <hr/>
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" >
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td>Köpeğime Acil Yuva Arıyorum !!</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-
-            <hr/>
-            <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" >
-                <tr>
-                    <td rowspan="2" width="60" height="50"><img width="60" height="60"
-                                                                src="../resources/images/kopek.jpg"/></td>
-                    <td>Köpeğime Acil Yuva Arıyorum !!</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                            <li><a href="#">Rize</a></li>
-                            <li><a href="#">Merkez</a></li>
-
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                    <div class="well  well-sm" style="width: 650px;">
+                        <fieldset>
+                            <legend>Süleyman Telli</legend>
+                            <div class="scroll">
+                                <table border="0" width="600">
 
 
-    </ui:define>
+                                    <ui:repeat value="#{messagePageBean.messageList()}" var="message" id="test">
 
-</ui:composition>
+
+                                        <h:panelGroup rendered="#{message.senderMemberId==loginBean.userId}" id="out1">
+
+                                            <tr>
+                                                <td align="right" colspan="2">
+                                                    <div class="panel panel-default  " style="width: 350px; ">
+                                                        <div class="panel-body bg-warning"
+                                                             style="width: 350px; text-align: left; padding: 5px;">
+
+                                                            <small>
+                                                                #{message.message}
+                                                            </small>
+                                                            <br/>
+                                                            <span class="pull-right text-muted">
+                                                    <small><strong>#{message.messageSendTime}</strong></small></span><br/>
+
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                        </h:panelGroup>
+
+                                            <h:panelGroup rendered="#{message.senderMemberId!=loginBean.userId}">
+                                            <tr>
+                                                <td align="left" colspan="2">
+                                                    <div class="panel panel-default" style="width: 350px;">
+                                                        <div class="panel-body" style="width: 350px; padding: 5px;">
+                                                            <small>
+                                                                #{message.message}
+
+                                                            </small>
+                                                            <br/>
+                                                            <span class="pull-right text-muted"><small><strong>#{message.messageSendTime}</strong></small></span><br/>
+
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                    </h:panelGroup>
+                                    </ui:repeat>
+
+                                </table>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="well well-sm" style="width: 650px;">
+
+
+                        <table border="0" width="610">
+                            <tr>
+                                <th valign="top">Mesajınız</th>
+                                <td align="left"><p:inputText id="msg" value="#{messagePageBean.message.message}"/></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" align="right">
+                                    gondericii
+                                    #{loginBean.userId}
+                                    alıcı
+                                    #{messagePageBean.message.receiverMemberId}
+
+
+
+
+                                    <p:commandButton value="Gönder" icon="ui-icon-check"
+                                                     styleClass="btn btn-primary btn-sm"
+                                                     id="buton"
+                                                     action="#{messagePageBean.sendMessage()}">
+
+                                        <f:param name="sender" value="#{loginBean.userId}"></f:param>
+                                        <f:param name="advertisement"
+                                                 value="#{messagePageBean.message.advertisement.advertisementId}"/>
+                                        <f:param name="receiver" value="#{messagePageBean.message.receiverMemberId}"/>
+
+
+                                        <f:ajax render="test"/>
+
+
+                                    </p:commandButton>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>
