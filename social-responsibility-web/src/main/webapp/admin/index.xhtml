@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body>
+
+    <ui:composition template="template/template.xhtml">
+        <ui:param name="pageTitle" value="Yönetici Paneli"/>
+        <ui:define name="icerik">
+
+            <p:growl id="growl" showDetail="false" sticky="true"/>
+            <div class="col-md-3" style="padding: 0px;">
+                <div class="list-group  ">
+
+                    <h:form>
+                        <h:commandLink value="Üyeler" styleClass="list-group-item"
+                                       action="members.xhtml"> </h:commandLink>
+                        <h:commandLink value="İlan Onayla" styleClass="list-group-item"
+                                       action="index.xhtml"> </h:commandLink>
+                    </h:form>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <h4 class="h4"></h4>
+                        <hr/>
+                        <h4>Onay Bekleyen İlanlar</h4>
+                        <table border="1" width="600" align="center" class="table table-striped">
+                            <h:form>
+                                <tr>
+                                    <th>İlan Başlığı</th>
+                                    <th>Yayın Durumu</th>
+                                    <th>Detay</th>
+                                    <th>Sil</th>
+
+                                </tr>
+                                <ui:repeat value="#{advertisementConfirmBean.advertisements()}" var="advertisement">
+                                    <tr>
+                                        <td>#{advertisement.advertisementTopic}</td>
+                                        <td width="50">
+                                            <h:commandButton
+                                                    value="Yayına Al"
+                                                    styleClass="btn btn-block"
+                                                    rendered="#{advertisement.status==3}"
+                                                    action="#{advertisementConfirmBean.confirmAdvertisement(advertisement.advertisementId)}"/>
+                                            <h:commandButton
+                                                    value="Onayla"
+                                                    styleClass="btn btn-success"
+                                                    rendered="#{advertisement.status==0}"
+                                                    action="#{advertisementConfirmBean.confirmAdvertisement(advertisement.advertisementId)}"/>
+                                            <h:commandButton
+                                                    value="Yayını Durdur"
+                                                    styleClass="btn btn-danger"
+                                                    rendered="#{advertisement.status==1}"
+                                                    action="#{advertisementConfirmBean.revokeAdvertisement(advertisement.advertisementId)}"/>
+                                        </td>
+                                        <td width="50"><h:commandButton value="İncele" styleClass="btn btn-info"/></td>
+                                        <td width="20">
+                                            <h:commandButton value="Sil"
+                                                             styleClass="btn btn-info"
+                                                             action="#{advertisementConfirmBean.removeAdvertisement(advertisement.advertisementId)}"/>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </h:form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>
