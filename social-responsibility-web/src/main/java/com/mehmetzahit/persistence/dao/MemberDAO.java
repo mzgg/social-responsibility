@@ -14,15 +14,10 @@ import java.util.List;
 
 public interface MemberDAO {
     void insertMember(Member member);
-
     List<Member> select();
-
     Member findUser(String email, String password);
-
     Member findUser(String email);
-
-    Member findUser(int userId);
-
+    Member findUser(long userId);
     void updateMember(Member member);
 
 }

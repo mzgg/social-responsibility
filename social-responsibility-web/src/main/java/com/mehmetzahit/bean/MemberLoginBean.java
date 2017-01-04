@@ -72,11 +72,7 @@ public class MemberLoginBean implements Serializable {
             System.out.println("hata");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("kullanıcıadı veye Şifre Hatalı"));
-
-
         }
-
-
         else {
             Authorization authorization = new Authorization();
             authorization.login();

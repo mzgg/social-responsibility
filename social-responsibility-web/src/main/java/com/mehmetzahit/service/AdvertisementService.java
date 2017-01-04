@@ -26,7 +26,6 @@ public class AdvertisementService implements AdvertisementDAO {
     public void persistAdvertisement(Advertisement advertisement) {
         advertisementDAO.persistAdvertisement(advertisement);
     }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("find/{memberId}")
@@ -35,11 +34,21 @@ public class AdvertisementService implements AdvertisementDAO {
         return advertisementDAO.advertisements(memberId);
     }
 
+    @Override
+    public List<Advertisement> publishedAdvertisement(long memberId) {
+        return null;
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("searchAdvertisement/{searchAdvertisement}")
     @Override
     public Advertisement advertisement(@PathParam("searchAdvertisement") long advertisementNumber) {
         return advertisementDAO.advertisement(advertisementNumber);
+    }
+
+    @Override
+    public Advertisement findAdvertisementById(long advertisementId) {
+        return null;
     }
 }

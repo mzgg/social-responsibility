@@ -40,13 +40,8 @@ public class Authorization implements Serializable {
     }
 
 
-
     public void login() {
-
-        System.out.println("Login Metoduna Girildi");
-
         try {
-
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
 
@@ -56,16 +51,13 @@ public class Authorization implements Serializable {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
             setEmail(authentication.getName());
-            System.out.println(authentication.getName()+" bak bakalım");
+            System.out.println(authentication.getName());
 
         } catch (ServletException | IOException ex) {
 
 
         }
-        /*finally {
-            return null;
-        }*/
-        System.out.println("Login Metodundan Çıkıldı");
+
     }
 
 }

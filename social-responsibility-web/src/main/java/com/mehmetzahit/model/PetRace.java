@@ -22,6 +22,10 @@ public class PetRace implements Serializable {
     public PetRace() {
     }
 
+    public PetRace(int raceId) {
+        this.raceId =raceId;
+    }
+
     public PetRace(String raceName, int kindId) {
         this.raceName = raceName;
         this.kindId = kindId;

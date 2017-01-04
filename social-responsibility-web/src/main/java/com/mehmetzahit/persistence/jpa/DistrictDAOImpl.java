@@ -28,4 +28,12 @@ public class DistrictDAOImpl implements DistrictDAO {
         List<District> districtList = query.getResultList();
         return districtList;
     }
+
+    @Override
+    @Transactional
+    public List<District> districtList() {
+        Query query = entityManager.createQuery("FROM DISTRICT");
+        List<District> districtList = query.getResultList();
+        return districtList;
+    }
 }

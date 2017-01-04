@@ -13,7 +13,7 @@ public class Member implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
-    private int memberId;
+    private long memberId;
 
     @QueryParam("memberName")
     @Column(name = "MEMBER_NAME")
@@ -43,7 +43,12 @@ public class Member implements Serializable {
     @Column(name = "ROLE")
     private int role;
 
+
     public Member() {
+    }
+
+    public Member(long memberId) {
+        this.memberId = memberId;
     }
 
     public Member(String memberName, String memberSurname, String emailAddress, String phone, String password, int enabled, int role) {
@@ -56,11 +61,11 @@ public class Member implements Serializable {
         this.role = role;
     }
 
-    public int getMemberId() {
+    public long getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(int memberId) {
+    public void setMemberId(long memberId) {
         this.memberId = memberId;
     }
 
@@ -117,8 +122,7 @@ public class Member implements Serializable {
     }
 
     public void setRole(int role) {
-        this.role = 1;
-
+        this.role = role;
     }
 
     @Override

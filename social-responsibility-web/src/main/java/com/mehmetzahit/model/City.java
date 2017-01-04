@@ -12,41 +12,44 @@ public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CITY_ID")
-    private int CityId;
+    private int cityId;
 
     @Column(name = "CITY_NAME")
-    private String CityName;
+    private String cityName;
+
 
     public City() {
     }
 
-    public City(String cityName) {
+    public City(int cityId) {
+        this.cityId = cityId;
+    }
 
-        CityName = cityName;
+    public City(String cityName) {
+        this.cityName = cityName;
     }
 
     public int getCityId() {
-
-        return CityId;
+        return cityId;
     }
 
     public void setCityId(int cityId) {
-        CityId = cityId;
+        this.cityId = cityId;
     }
 
     public String getCityName() {
-        return CityName;
+        return cityName;
     }
 
     public void setCityName(String cityName) {
-        CityName = cityName;
+        this.cityName = cityName;
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "CityId=" + CityId +
-                ", CityName='" + CityName + '\'' +
+                "cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
                 '}';
     }
 }

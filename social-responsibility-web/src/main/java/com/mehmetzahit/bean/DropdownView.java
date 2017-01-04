@@ -25,11 +25,11 @@ import java.util.Map;
 public class DropdownView implements Serializable {
 
 
-    private Map<String, Map<Integer,String>> data = new HashMap<String, Map<Integer,String>>();
-    private String country;
-    private String city;
-    private Map<Integer,String> countries;
-    private Map<Integer,String> cities;
+    private Map<String, Map<Integer, String>> data = new HashMap<String, Map<Integer, String>>();
+    private String petKind;
+    private String petRace;
+    private Map<Integer, String> kinds;
+    private Map<Integer, String> races;
     private String training;
     private boolean visibility;
     private boolean visibilityForTrainingBox;
@@ -53,50 +53,50 @@ public class DropdownView implements Serializable {
 
     @PostConstruct
     public void init() {
-        countries = new HashMap<Integer,String>();
+        kinds = new HashMap<Integer, String>();
 
 
         for (PetKind petKindList : petKindDAO.petKindList()) {
-            countries.put(petKindList.getKindId(),petKindList.getKindName());
+            kinds.put(petKindList.getKindId(), petKindList.getKindName());
 
-            Map<Integer,String> map = new HashMap< Integer,String>();
+            Map<Integer, String> map = new HashMap<Integer, String>();
             for (PetRace petRaceList : petRaceDOA.findRaceByKind(petKindList.getKindId())) {
-                map.put(petRaceList.getRaceId(),petRaceList.getRaceName());
+                map.put(petRaceList.getRaceId(), petRaceList.getRaceName());
             }
 
-            System.out.println("haritaa"+map);
+            System.out.println("haritaa" + map);
             data.put(petKindList.getKindName(), map);
 
         }
 
-        System.out.println(countries);
+        System.out.println(kinds);
         System.out.println(data);
     }
 
-    public Map<String, Map< Integer,String>> getData() {
+    public Map<String, Map<Integer, String>> getData() {
         return data;
     }
 
-    public String getCountry() {
-        return country;
+    public String getPetKind() {
+        return petKind;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-        System.out.println(country);
+    public void setPetKind(String petKind) {
+        this.petKind = petKind;
+        System.out.println(petKind);
         visibility = true;
         visibilityForTrainingBox = false;
         visibilityForButton = false;
 
     }
 
-    public String getCity() {
-        return city;
+    public String getPetRace() {
+        return petRace;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-        System.out.println(city);
+    public void setPetRace(String petRace) {
+        this.petRace = petRace;
+        System.out.println(petRace);
         this.visibilityForTrainingBox = true;
         visibilityForButton = false;
     }
@@ -112,19 +112,19 @@ public class DropdownView implements Serializable {
 
     }
 
-    public Map< Integer,String> getCountries() {
-        return countries;
+    public Map<Integer, String> getKinds() {
+        return kinds;
     }
 
-    public Map< Integer,String> getCities() {
-        return cities;
+    public Map<Integer, String> getRaces() {
+        return races;
     }
 
-    public void onCountryChange() {
-        if (country != null && !country.equals(""))
-            cities = data.get(countries.get(Integer.parseInt(country)));
+    public void onKindChange() {
+        if (petKind != null && !petKind.equals(""))
+            races = data.get(kinds.get(Integer.parseInt(petKind)));
         else
-            cities = new HashMap<Integer,String>();
+            races = new HashMap<Integer, String>();
     }
 
 

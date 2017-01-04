@@ -29,6 +29,10 @@ public class District implements Serializable {
         this.cityId = cityId;
     }
 
+    public District(int districtId) {
+        this.districtId = districtId;
+    }
+
     public int getDistrictId() {
 
         return districtId;

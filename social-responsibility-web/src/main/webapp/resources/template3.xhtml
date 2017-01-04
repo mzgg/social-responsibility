@@ -33,53 +33,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <table border="0" style="height: 230px;" cellpadding="5" cellspacing="5">
-                        <tr>
-                            <td width="50">
-                                <small>Şehir :</small>
-                            </td>
-                            <td colspan="3">
-                                <h:selectOneMenu styleClass="form-control">
-                                    <f:selectItem itemLabel="--Şehir Seçiniz--"/>
-                                </h:selectOneMenu>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <small> Türü:</small>
-                            </td>
-                            <td colspan="3">
-                                <h:selectOneMenu styleClass="form-control">
-                                    <f:selectItem itemLabel="--Hayvan Seçiniz--"/>
-                                </h:selectOneMenu>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <small>Cinsi:</small>
-                            </td>
-                            <td colspan="3">
-                                <h:selectOneMenu styleClass="form-control" style="size: 10px;">
-                                    <f:selectItem itemLabel="--Seçiniz--"/>
-                                </h:selectOneMenu>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <small> Yaşı:</small>
-                            </td>
-                            <td>
-                                <h:inputText size="2" styleClass="form-control "/>
-                            </td>
-                            <td> to</td>
-                            <td>
-                                <h:inputText size="2" styleClass="form-control "/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" align="right"><h:commandButton value="Ara" styleClass="btn btn-info"/></td>
-                        </tr>
-                    </table>
+                   <ui:include src="../SearchForm.xhtml" />
 
 
                 </div>

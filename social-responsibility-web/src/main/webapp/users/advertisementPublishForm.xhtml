@@ -11,11 +11,12 @@
 
 </h:head>
 <h:body>
+
     <ui:composition template="../resources/template2.xhtml">
         <ui:param name="pageTitle" value="MzG"/>
         <ui:define name="content">
             <h:form>
-
+                <h:outputText value="#{publishAdvertisementBean.userId}" />dasd
                 <h:outputText value="#{param.petKind}"/>
                 <h:outputText value="#{param.petRace}"/>
                 <h:outputText value="#{param.training}"/>
@@ -30,17 +31,17 @@
                     <div class="form-group ">
                         <label>İlan Başlığı</label>
                         <h:inputText styleClass="form-control"
-                                     value="#{advertisementBean.advertisement.advertisementTopic}"
+                                     value="#{publishAdvertisementBean.advertisement.advertisementTopic}"
                                      required="true"
                                      requiredMessage="İlan Başlığı Giriniz"/>
 
                         <label>Yaşı</label>
                         <h:inputText styleClass="form-control"
-                                     value="#{advertisementBean.advertisement.age}"
+                                     value="#{publishAdvertisementBean.advertisement.age}"
                                      style="width: 60px;" maxlength="2"/>
 
                         <label>Cinsiyeti</label>
-                        <h:selectOneMenu styleClass="form-control" value="#{advertisementBean.advertisement.gender}"
+                        <h:selectOneMenu styleClass="form-control" value="#{publishAdvertisementBean.advertisement.gender}"
                                          style="width: 150px;">
                             <f:selectItem itemValue="--Seçiniz--"/>
                             <f:selectItem itemLabel="Dişi" itemValue="0"/>
@@ -71,12 +72,12 @@
                         </h:panelGrid>
 
 
-                        <p:fileUpload fileUploadListener="#{advertisementBean.fileUploadView.handleFileUpload}" mode="advanced"
+                        <p:fileUpload fileUploadListener="#{publishAdvertisementBean.handleFileUpload}" mode="advanced"
                                       label="Seçiniz"
                                       dragDropSupport="true" auto="true"
                                       fileLimitMessage="Limit Sınıra Ulaştı Daha Ekleyemezsiniz"
                                       invalidFileMessage="Sadece JPG,PNG ve GIF "
-                                      multiple="true" update="messages" sizeLimit="1000000000" fileLimit="3"
+                                      multiple="true" update="messages" sizeLimit="1000000000" fileLimit="8"
                                       allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
 
@@ -85,12 +86,12 @@
                         <label>Açıklama</label><br/>
                         <p:inputTextarea cols="40" rows="5"></p:inputTextarea>
                         <h:commandButton styleClass="btn btn-primary" value="Yayınla"
-                                         action="#{advertisementBean.persist}">
+                                         action="#{publishAdvertisementBean.persist}">
                             <f:setPropertyActionListener value="#{cityAndDistrictDropdownBean.city}"
-                                                         target="#{advertisementBean.city}"/>
+                                                         target="#{publishAdvertisementBean.city}"/>
 
                             <f:setPropertyActionListener value="#{cityAndDistrictDropdownBean.district}"
-                                                         target="#{advertisementBean.district}"/>
+                                                         target="#{publishAdvertisementBean.district}"/>
 
                             <f:param name="petKind" value="#{param.petKind}" />
                             <f:param name="petRace" value="#{param.petRace}" />

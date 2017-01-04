@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface DistrictDAO {
     List<District> districtList(int cityId);
+    List<District> districtList();
 }

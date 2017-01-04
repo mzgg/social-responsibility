@@ -71,7 +71,7 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     @Transactional
-    public Member findUser(int userId) {
+    public Member findUser(long userId) {
         Member member = entityManager.find(Member.class, userId);
         return member;
     }

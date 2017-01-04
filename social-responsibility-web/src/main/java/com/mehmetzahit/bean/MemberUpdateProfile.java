@@ -24,7 +24,7 @@ public class MemberUpdateProfile implements Serializable {
     private Member member = new Member();
 
     @ManagedProperty("#{loginBean.userId}")
-    private int userId;
+    private long userId;
 
     private boolean visibility;
 
@@ -39,11 +39,11 @@ public class MemberUpdateProfile implements Serializable {
     ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
     MemberDAO memberDAO = context.getBean(MemberDAOImpl.class);
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

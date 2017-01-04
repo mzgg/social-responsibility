@@ -21,10 +21,15 @@ public class PetKind implements Serializable {
     public PetKind() {
     }
 
+    public PetKind(int kindId) {
+        this.kindId = kindId;
+    }
+
     public PetKind(String kindName) {
 
         this.kindName = kindName;
     }
+
 
     public int getKindId() {
         return kindId;

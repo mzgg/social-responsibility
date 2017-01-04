@@ -17,23 +17,23 @@
 
             <h:panelGrid columns="7" cellpadding="6">
                 <p:outputLabel value="Hayvan Türü: ">
-                    <p:selectOneListbox id="country" value="#{dropdownView.country}" style="width:150px">
-                        <p:ajax listener="#{dropdownView.onCountryChange}" update="city"/>
+                    <p:selectOneListbox id="petKind" value="#{dropdownView.petKind}" style="width:150px">
+                        <p:ajax listener="#{dropdownView.onKindChange}" update="petRace"/>
                         <f:ajax event="click" render="@all"/>
                         <f:selectItems var="item"
                                        itemLabel="#{item.value}"
                                        itemValue="#{item.key}"
-                                       value="#{dropdownView.countries.entrySet()}"/>
+                                       value="#{dropdownView.kinds.entrySet()}"/>
                     </p:selectOneListbox>
                 </p:outputLabel>
 
                 <p:outputLabel value="Hayvan Irkı: " rendered="#{dropdownView.visibility}">
-                    <p:selectOneListbox id="city" value="#{dropdownView.city}" style="width:230px">
+                    <p:selectOneListbox id="petRace" value="#{dropdownView.petRace}" style="width:230px">
                         <f:ajax event="click" render="@all"/>
                         <f:selectItems var="item"
                                        itemLabel="#{item.value}"
                                        itemValue="#{item.key}"
-                                       value="#{dropdownView.cities.entrySet()}"/>
+                                       value="#{dropdownView.races.entrySet()}"/>
                     </p:selectOneListbox>
                 </p:outputLabel>
 

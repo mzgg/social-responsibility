@@ -10,19 +10,19 @@
     <h:outputStylesheet library="css" name="bootstrap.css"/>
 </h:head>
 <h:body>
-
+    <c:forEach items="#{publishedAdvertisementBean.advertisements()}" var="ads">
     <table border="1" style="width:600px; height: 150px; margin: 10px;" class="table-bordered">
         <tr>
             <td rowspan="4" width="120"><img class="img-thumbnail" style="width: 120px; height: 120px;"
-                                             src="../resources/images/kopek.jpg"/></td>
-            <td colspan="4"><strong>Köpeğime Acil Yuva Arıyorum !!</strong></td>
+                                             src="../resources/images/#{ads.advertisementImageList.get(0).advertisementImageName}"/></td>
+            <td colspan="4"><strong>#{ads.advertisementTopic}</strong></td>
         </tr>
         <tr>
             <td colspan="4">
                 <ol class="breadcrumb" style="padding: 0px; margin: 0px;">
-                    <li><a href="#">Rize</a></li>
-                    <li><a href="#">Merkez</a></li>
-                    <li class="active">Balsu Mah.</li>
+                    <li><a href="#">#{ads.city.cityName}</a></li>
+                    <li><a href="#" class="active">#{ads.district.districtName}</a></li>
+
                 </ol>
             </td>
         </tr>
@@ -36,19 +36,19 @@
         <tr>
 
             <td>Bitiş tarihi: </td>
-            <td><span class="label label-default">...</span></td>
+            <td><span class="label label-default">#{ads.endDate}</span></td>
             <td><span class="glyphicon glyphicon-envelope">(0)</span> </td>
-            <td><a href="#"> Yayını Durdur</a></td>
+            <td></td>
 
         </tr>
         <tr>
             <td>
-                <small><strong>İlan no: 12542534</strong></small>
+                <small><strong>İlan no: #{ads.advertisementNumber}</strong></small>
             </td>
             <td colspan="4">df</td>
         </tr>
     </table>
-
+</c:forEach>
 </h:body>
 </html>
 

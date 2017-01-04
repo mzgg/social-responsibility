@@ -3,6 +3,7 @@ package com.mehmetzahit.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by GUNEY on 27.11.2016.
@@ -24,37 +25,60 @@ public class Advertisement implements Serializable {
     @Column(name = "AGE")
     private int age;
 
-    @Column(name = "PET_KIND")
-    private int petKind;
-
-    @Column(name = "PET_RACE")
-    private int petRace;
-
     @Column(name = "GENDER")
     private int gender;
 
     @Column(name = "TRAINING")
     private int trainig;
 
-    @Column(name = "CITY")
-    private int city;
-
-    @Column(name = "DISTRICT")
-    private int district;
-
     @Column(name = "STATUS")
     private int status;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "PUBLISHING_DATE")
     private Date publishinDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_DATE")
     private Date endDate;
+
+    @OneToOne
+    @JoinColumn(name = "FK_PET_KIND_ID")
+    private PetKind petKind;
+
+
+    @OneToOne
+    @JoinColumn(name = "FK_PET_RACE_ID")
+    private PetRace petRace;
+
+    @OneToOne
+    @JoinColumn(name = "FK_CITY_ID")
+    private City city;
+
+    @OneToOne
+    @JoinColumn(name = "FK_DISTRICT_ID")
+    private District district;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_MEMBER_ID")
+    private Member member;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "advertisement",fetch = FetchType.EAGER)
+    private List<AdvertisementImage> advertisementImageList;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "advertisement",fetch = FetchType.LAZY)
+    private List<Message> messageList;
+
 
     public Advertisement() {
     }
 
+    public Advertisement(long advertisementId) {
+        this.advertisementId = advertisementId;
+    }
+
     public long getAdvertisementId() {
+
         return advertisementId;
     }
 
@@ -86,22 +110,6 @@ public class Advertisement implements Serializable {
         this.age = age;
     }
 
-    public int getPetKind() {
-        return petKind;
-    }
-
-    public void setPetKind(int petKind) {
-        this.petKind = petKind;
-    }
-
-    public int getPetRace() {
-        return petRace;
-    }
-
-    public void setPetRace(int petRace) {
-        this.petRace = petRace;
-    }
-
     public int getGender() {
         return gender;
     }
@@ -116,22 +124,6 @@ public class Advertisement implements Serializable {
 
     public void setTrainig(int trainig) {
         this.trainig = trainig;
-    }
-
-    public int getCity() {
-        return city;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
-    public int getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(int district) {
-        this.district = district;
     }
 
     public int getStatus() {
@@ -158,6 +150,54 @@ public class Advertisement implements Serializable {
         this.endDate = endDate;
     }
 
+    public PetKind getPetKind() {
+        return petKind;
+    }
+
+    public void setPetKind(PetKind petKind) {
+        this.petKind = petKind;
+    }
+
+    public PetRace getPetRace() {
+        return petRace;
+    }
+
+    public void setPetRace(PetRace petRace) {
+        this.petRace = petRace;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public List<AdvertisementImage> getAdvertisementImageList() {
+        return advertisementImageList;
+    }
+
+    public void setAdvertisementImageList(List<AdvertisementImage> advertisementImageList) {
+        this.advertisementImageList = advertisementImageList;
+    }
+
     @Override
     public String toString() {
         return "Advertisement{" +
@@ -165,15 +205,17 @@ public class Advertisement implements Serializable {
                 ", advertisementNumber=" + advertisementNumber +
                 ", advertisementTopic='" + advertisementTopic + '\'' +
                 ", age=" + age +
-                ", petKind=" + petKind +
-                ", petRace=" + petRace +
                 ", gender=" + gender +
                 ", trainig=" + trainig +
-                ", city=" + city +
-                ", district=" + district +
                 ", status=" + status +
                 ", publishinDate=" + publishinDate +
                 ", endDate=" + endDate +
+                ", petKind=" + petKind +
+                ", petRace=" + petRace +
+                ", city=" + city +
+                ", district=" + district +
+                ", member=" + member +
+                ", advertisementImageList=" + advertisementImageList +
                 '}';
     }
 }
