@@ -24,21 +24,34 @@
                         <table border="0" class="table-bordered" cellpadding="0" cellspacing="0" width="600">
                             <tr>
                                 <td rowspan="2" width="50" height="50"><img width="60" height="60"
-                                                                            src="../resources/images/#{item.advertisement.advertisementImageList.get(0).advertisementImageName}"/>
+                                                                            src="../resources/upload/#{item.advertisement.advertisementImageList.get(0).advertisementImageName}"/>
                                 </td>
                                 <td>
-
-Gonderici
+<!--
+  Gonderici
  #{loginBean.userId}
 Alıcı
-#{item.senderMemberId}
+                                    <c:if test="#{item.senderMemberId!=loginBean.userId}">
+                                    #{item.senderMemberId}"
+                                    </c:if>
+                                    <c:if test="#{item.receiverMemberId!=loginBean.userId}">
+                                       #{item.receiverMemberId}
+                                    </c:if>
+-->
+
 
                                     <h:commandLink value="#{item.advertisement.advertisementTopic}"
                                                    action="#{messagePageBean.messagePage()}">
 
 
                                         <f:param name="senderMemberId" value="#{loginBean.userId}" />
-                                        <f:param name="receiverMemberId" value="#{item.senderMemberId}" />
+                                        <c:if test="#{item.senderMemberId!=loginBean.userId}">
+                                            <f:param name="receiverMemberId" value="#{item.senderMemberId}" />
+                                        </c:if>
+                                        <c:if test="#{item.receiverMemberId!=loginBean.userId}">
+                                            <f:param name="receiverMemberId" value="#{item.receiverMemberId}" />
+                                        </c:if>
+
                                         <f:param name="advertisementId" value="#{item.advertisement.advertisementId}" />
 
                                     </h:commandLink>

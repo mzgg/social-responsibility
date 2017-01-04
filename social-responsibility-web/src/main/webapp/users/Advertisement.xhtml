@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:hh="http://java.sun.com/jsf/html">
+<h:head>
+
+
+</h:head>
+<h:body>
+
+    <ui:composition template="../resources/template2.xhtml">
+
+        <ui:param name="pageTitle" value="İlanlar"/>
+        <ui:define name="content">
+            <div class="well">
+                <h:form>
+
+                    <h:panelGrid columns="7" cellpadding="6">
+                        <p:outputLabel value="Hayvan Türü: ">
+                            <p:selectOneListbox id="petKind" value="#{dropdownView.petKind}" style="width:150px">
+                                <p:ajax listener="#{dropdownView.onKindChange}" update="petRace"/>
+                                <f:ajax event="click" render="@all"/>
+                                <f:selectItems var="item"
+                                               itemLabel="#{item.value}"
+                                               itemValue="#{item.key}"
+                                               value="#{dropdownView.kinds.entrySet()}"/>
+                            </p:selectOneListbox>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="Hayvan Irkı: " rendered="#{dropdownView.visibility}">
+                            <p:selectOneListbox id="petRace" value="#{dropdownView.petRace}" style="width:230px">
+                                <f:ajax event="click" render="@all"/>
+                                <f:selectItems var="item"
+                                               itemLabel="#{item.value}"
+                                               itemValue="#{item.key}"
+                                               value="#{dropdownView.races.entrySet()}"/>
+                            </p:selectOneListbox>
+                        </p:outputLabel>
+
+                        <p:outputLabel value="Eğitim:" rendered="#{dropdownView.visibilityForTrainingBox}">
+                            <p:selectOneListbox value="#{dropdownView.training}">
+                                <f:ajax event="click" render="@all"/>
+                                <f:selectItem itemLabel="Eğitimli" itemValue="1"/>
+                                <f:selectItem itemLabel="Eğitimsiz" itemValue="0"/>
+                            </p:selectOneListbox>
+                        </p:outputLabel>
+
+
+                        <h:commandLink
+                                value="İlan Ver" action="advertisementPublishForm"
+
+                                rendered="#{dropdownView.visibilityForButton}">
+
+                            <f:param name="petKind" value="#{dropdownView.petKind}"/>
+                            <f:param name="petRace" value="#{dropdownView.petRace}"/>
+                            <f:param name="training" value="#{dropdownView.training}"/>
+
+                        </h:commandLink>
+
+                    </h:panelGrid>
+
+                    <p:separator/>
+
+
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>

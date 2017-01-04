@@ -35,8 +35,8 @@
                             <c:forEach var="ads"
                                        items="#{detailAdvertisementBean.advertisement.advertisementImageList}">
                                 <div class="col-md-3" style="padding: 0px;">
-                                    <img src="resources/upload/#{ads.advertisementImageName}" width="80" height="80"
-                                         class="img-responsive img-thumbnail"/>
+                                    <img src="resources/upload/#{ads.advertisementImageName}" style="width: 80px; height: 80px;"
+                                         class=" img-thumbnail"/>
                                 </div>
                             </c:forEach>
 
@@ -65,7 +65,12 @@
 
                     <tr>
                         <td>İlan Tarihi</td>
-                        <td>içerik</td>
+                        <td>
+                            <h:outputText value="#{detailAdvertisementBean.advertisement.publishinDate}">
+                                <f:convertDateTime type="date" pattern="MM-dd-yyyy"/>
+                            </h:outputText>
+
+                        </td>
                     </tr>
 
                     <tr>
@@ -101,10 +106,12 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body bg-default">
+<!--
+
                         <h:outputLabel value="#{loginBean.userId}"/><br/>
                         <h:outputLabel value="#{detailAdvertisementBean.advertisement.advertisementId}"/><br/>
                         <h:outputLabel value="#{detailAdvertisementBean.advertisement.member.memberId}"/><br/>
-
+-->
                         <strong>#{detailAdvertisementBean.advertisement.member.memberName}</strong>
                         <h:form>
                             <h:commandButton styleClass="btn-sm btn-primary"
@@ -119,8 +126,6 @@
 
                             </h:commandButton>
                         </h:form>
-                        <br/>
-                        <hr/>
 
                         <strong>
                             Telefon:

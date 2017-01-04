@@ -66,7 +66,7 @@ public class MemberLoginBean implements Serializable {
 
     public void userValidate() {
         Member user = memberDAO.findUser(getUserName(), getPassword());
-        this.userId = user.getMemberId();
+
         System.out.println(this.userId);
         if (user == null) {
             System.out.println("hata");
@@ -74,6 +74,7 @@ public class MemberLoginBean implements Serializable {
             context.addMessage(null, new FacesMessage("kullanıcıadı veye Şifre Hatalı"));
         }
         else {
+            this.userId = user.getMemberId();
             Authorization authorization = new Authorization();
             authorization.login();
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

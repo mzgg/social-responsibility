@@ -25,15 +25,20 @@
                     <c:forEach var="search" items="#{searchFormBean.searchList()}">
 
 
-
                         <tr>
 
-                            <td><a href="detailAdvertisement.xhtml?test=#{search.advertisementNumber}"><img src="resources/upload/#{search.advertisementImageList.get(0).advertisementImageName}" width="40" height="40"/></a></td>
+                            <td><a href="detailAdvertisement.xhtml?test=#{search.advertisementNumber}"><img
+                                    src="resources/upload/#{search.advertisementImageList.get(0).advertisementImageName}"
+                                    style="width: 50px; height:50px;" /></a></td>
                             <td>#{search.petKind.kindName}</td>
                             <td>#{search.advertisementTopic}</td>
                             <td>#{search.age}</td>
                             <td>#{search.petRace.raceName}</td>
-                            <td>12.06.2016</td>
+                            <td>
+                                <h:outputText value="#{search.publishinDate}">
+                                    <f:convertDateTime type="date" pattern="MM-dd-yyyy"/>
+                                </h:outputText>
+                            </td>
                             <td>#{search.city.cityName}<br/>#{search.district.districtName}</td>
                         </tr>
 
@@ -45,6 +50,6 @@
 
             </div>
         </h:form>
-        </ui:define>
+    </ui:define>
 
-        </ui:composition>
+</ui:composition>

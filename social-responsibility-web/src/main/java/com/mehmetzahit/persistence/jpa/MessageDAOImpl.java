@@ -42,7 +42,7 @@ public class MessageDAOImpl implements MessageDAO {
 
     @Override
     public List<Message> messageListBox(long memberId) {
-        Query query = entityManager.createQuery("SELECT m FROM MESSAGE m WHERE m.senderMemberId=:memberId OR m.receiverMemberId=:memberId group by m.receiverMemberId,m.senderMemberId ORDER BY m.messageSendTime DESC");
+        Query query = entityManager.createQuery("SELECT m FROM MESSAGE m WHERE m.senderMemberId=:memberId OR m.receiverMemberId=:memberId group by m.advertisement.advertisementId ORDER BY m.messageSendTime DESC");
         query.setParameter("memberId", memberId);
         return query.getResultList();
     }
