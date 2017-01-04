@@ -7,10 +7,13 @@ import org.junit.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 /**
  * Created by GUNEY on 1.11.2016.
  */
 public class MemberDAOImplTest {
+
 
     ConfigurableApplicationContext context;
     MemberDAO memberDAO;
@@ -65,6 +68,13 @@ public class MemberDAOImplTest {
         member.setMemberName("Mehmet Zahit");
         member.setMemberSurname("Güney");
 
+    }
+
+    @Test
+    public void select() throws Exception {
+        List<Member> memberList = memberDAO.select();
+        System.out.println(memberList);
+        Assert.assertNotNull(memberList);
     }
 
 }
