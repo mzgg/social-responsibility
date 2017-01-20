@@ -22,12 +22,18 @@ public class SearchFormBean {
 
 
     private Search search = new Search();
+    private String keyword;
 
     ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
     SearchDAO searchDAO = context.getBean(SearchDAOImpl.class);
 
     public List<Advertisement> searchList() {
-        return searchDAO.searchList(search);
+        if (keyword == null) {
+            return searchDAO.searchList(search);
+
+        } else {
+            return searchDAO.searchList(keyword);
+        }
     }
 
 
@@ -49,5 +55,13 @@ public class SearchFormBean {
 
     public void setSearch(Search search) {
         this.search = search;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

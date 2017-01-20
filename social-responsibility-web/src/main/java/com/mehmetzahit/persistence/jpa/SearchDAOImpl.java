@@ -49,4 +49,12 @@ public class SearchDAOImpl implements SearchDAO {
         List<Advertisement> searchtList = query.getResultList();
         return searchtList;
     }
+
+    @Override
+    @Transactional
+    public List<Advertisement> searchList(String keyword) {
+        Query query = entityManager.createQuery("SELECT a FROM ADVERTISEMENT a WHERE a.petKind.kindName LIKE :keyword or a.petRace.raceName LIKE :keyword or a.advertisementTopic LIKE :keyword");
+        query.setParameter("keyword", '%' + keyword + '%');
+        return query.getResultList();
+    }
 }

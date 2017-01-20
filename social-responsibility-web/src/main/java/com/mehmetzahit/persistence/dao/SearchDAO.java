@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface SearchDAO {
     List<Advertisement> searchList(Search search);
+    List<Advertisement> searchList(String keyword);
 }

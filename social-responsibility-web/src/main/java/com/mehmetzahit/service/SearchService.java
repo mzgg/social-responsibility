@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @Path(value = "/searchService")
-public class SearchService implements SearchDAO {
+public class SearchService implements SearchDAO  {
 
     ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
     SearchDAO searchDAO = context.getBean(SearchDAOImpl.class);
@@ -31,5 +31,10 @@ public class SearchService implements SearchDAO {
     @Override
     public List<Advertisement> searchList(@BeanParam Search search) {
         return searchDAO.searchList(search);
+    }
+
+    @Override
+    public List<Advertisement> searchList(String keyword) {
+        return null;
     }
 }
